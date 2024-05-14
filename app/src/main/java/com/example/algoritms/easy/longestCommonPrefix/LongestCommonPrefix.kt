@@ -1,4 +1,11 @@
-package com.example.algoritms.easy
+package com.example.algoritms.easy.longestCommonPrefix
+
+/**
+ *
+ * 14. Longest Common Prefix
+ * https://leetcode.com/problems/longest-common-prefix/description/
+ *
+ * */
 
 class LongestCommonPrefix {
 
