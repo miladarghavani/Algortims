@@ -10,9 +10,16 @@ package com.example.algoritms.easy.longestCommonPrefix
 class LongestCommonPrefix {
 
     fun findLongestCommonPrefix(strs: Array<String>): String {
+        if (strs.isEmpty())return ""
+        var perfix = strs[0]
+        for (i in 1..<perfix.length){
+            for (j in 1..<strs.size){
+                var s = strs[j].chars()
+//                s[i] = perfix[i]
+            }
+        }
 
-
-        return "prefix"
+        return "perfix"
     }
 }
 
