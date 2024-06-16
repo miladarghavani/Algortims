@@ -1,11 +1,19 @@
-/*3174. CLEAR DIGITS*/
+package com.example.algoritms.easy.clearDigits/*3174. CLEAR DIGITS*/
 
 
 fun removeDigits(s: String): String {
-
     return ""
 }
-
+fun removeDigitsParham(s: String): String {
+    return buildString {
+        s.forEach {c ->
+            if (c.isDigit())
+                deleteAt(length - 1)
+            else
+                append(c)
+        }
+    }
+}
 fun main() {
     // Test cases
     val test1 = "abc"
@@ -18,7 +26,7 @@ fun main() {
 
     val test3 = "a1b2c3d4"
     val result3 = removeDigits(test3)
-    println("Input: \"$test3\" => Output: \"$result3\"")  // Expected Output: "cd"
+    println("Input: \"$test3\" => Output: \"$result3\"")  // Expected Output: ""
 
     val test4 = "1234"
     val result4 = removeDigits(test4)
@@ -26,10 +34,35 @@ fun main() {
 
     val test5 = "ab12cd34ef56"
     val result5 = removeDigits(test5)
-    println("Input: \"$test5\" => Output: \"$result5\"")  // Expected Output: "f"
+    println("Input: \"$test5\" => Output: \"$result5\"")  // Expected Output: ""
 
     val test6 = "a2b4c6d8"
     val result6 = removeDigits(test6)
     println("Input: \"$test6\" => Output: \"$result6\"")  // Expected Output: ""
 }
 
+
+
+fun removeDigits1(s: String): String {
+    val char = s.toMutableList()
+    var i = 0
+    while (true) {
+        if (i == 0 && char[i].isDigit()) {
+            char.removeAt(0)
+        }
+        if (i > 0 && char[i].isDigit()) {
+            char.removeAt(i)
+            char.removeAt(i - 1)
+            i -= 1
+        } else {
+            i += 1
+        }
+        if (i >= char.size) {
+            var s = StringBuilder()
+            char.forEach {
+                s.append(it)
+            }
+            return s.toString()
+        }
+    }
+}
