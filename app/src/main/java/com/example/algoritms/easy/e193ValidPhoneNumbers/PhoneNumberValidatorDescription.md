@@ -1,6 +1,9 @@
 package com.example.algoritms.easy.e193ValidPhoneNumbers
 
-Phone Number Validator
+193.Phone Number Validator
+
+https://leetcode.com/problems/valid-phone-numbers/description/
+
 Given a text file file.txt that contains a list of phone numbers (one per line), write a function to validate and print all valid phone numbers.
 
 A valid phone number must appear in one of the following two formats:
