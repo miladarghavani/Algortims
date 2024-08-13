@@ -2,7 +2,29 @@ package com.example.algoritms.easy.e242ValidAnagram
 
 class Solution1{
     fun isAnagram(s: String, t: String): Boolean {
-        return false
+        if (s.length != t.length) return false
+        var sSorted = s.toCharArray().sorted()
+        var tSorted = t.toCharArray().sorted()
+
+        for(i in s.indices){
+            if (sSorted[i] != tSorted[i]) return false
+        }
+        return true
+    }
+}
+
+class Solution2{
+    fun isAnagram(s: String, t: String): Boolean {
+        if (s.length != t.length) return false
+        var sSorted = s.toCharArray()
+        var tSorted = t.toCharArray()
+        var sumS = 0
+        var sumT = 0
+        for(i in s.indices){
+            sumS+=sSorted[i].code
+            sumT+=tSorted[i].code
+        }
+        return sumT==sumS
     }
 }
 
@@ -32,7 +54,7 @@ fun main() {
 
     for ((input, expected) in tests) {
         val (s, t) = input
-        val result = Solution().isAnagram(s, t)
+        val result = Solution2().isAnagram(s, t)
         println("Input: s = \"$s\", t = \"$t\" => Output: $result (Expected: $expected)")
     }
 }
