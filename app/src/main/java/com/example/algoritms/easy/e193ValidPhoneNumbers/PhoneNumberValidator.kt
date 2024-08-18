@@ -5,6 +5,16 @@ import org.junit.Test
 
 class Solution {
     fun isValidPhoneNumber(phoneNumber: String): Boolean {
+        phoneNumber.removePrefix("-").contains("a...z")
+        var con1 = phoneNumber.split(" ")
+        if (con1.isEmpty()){
+            var con2 = phoneNumber.split("-")
+            if (con2.size !=3) return false
+            con2.forEachIndexed { index, s ->
+               if (index == 2) return s.length == 4
+
+            }
+        }
         return false
     }
 }
