@@ -1,4 +1,4 @@
-package com.example.algoritms.easy.e193ValidPhoneNumbers
+package com.example.algoritms.easy.validPhoneNumbers_193
 
 193.Phone Number Validator
 

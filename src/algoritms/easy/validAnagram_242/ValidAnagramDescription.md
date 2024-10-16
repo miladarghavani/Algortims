@@ -1,4 +1,4 @@
-package com.example.algoritms.easy.e242ValidAnagram
+package com.example.algoritms.easy.validAnagram_242
 
     242. Valid Anagram
 

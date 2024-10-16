@@ -1,4 +1,4 @@
-package algoritms.easy.e374GuessNumber
+package algoritms.easy.guessNumber_374
 
 class Solution1 {
     fun guessNumber(n: Int): Int {

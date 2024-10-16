@@ -1,4 +1,4 @@
-package algoritms.easy.e374GuessNumber
+package algoritms.easy.guessNumber_374
 
 import org.testng.AssertJUnit.assertEquals
 import org.testng.annotations.Test
