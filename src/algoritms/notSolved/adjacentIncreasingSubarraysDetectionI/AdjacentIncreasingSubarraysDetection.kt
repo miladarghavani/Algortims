@@ -1,5 +1,7 @@
 package algoritms.notSolved.adjacentIncreasingSubarraysDetectionI
 
+import com.example.algoritms.easy.clearDigits.removeDigitsParham
+
 class Solution {
     fun hasAdjacentIncreasingSubarrays(nums: IntArray): Boolean {
         var firstSubarrayEnd = -1
@@ -16,6 +18,8 @@ class Solution {
 }
 
 fun main() {
+    PerformanceTester.measureExecution(1000 , { Solution().hasAdjacentIncreasingSubarrays( intArrayOf(1, 2, 3, 1, 2, 3))})
+
     val tests = listOf(
         intArrayOf(1, 2, 3, 1, 2, 3) to true,
         intArrayOf(1, 2, 3, 4) to false,

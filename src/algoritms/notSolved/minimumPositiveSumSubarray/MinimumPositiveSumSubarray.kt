@@ -22,6 +22,8 @@ class Solution {
 }
 
 fun main() {
+    PerformanceTester.measureExecution(1000 , { Solution().minPositiveSum(intArrayOf(-1, 2, 3, -4, 5))})
+
     val tests = listOf(
         intArrayOf(-1, 2, 3, -4, 5) to 6,
         intArrayOf(-1, -2, -3) to -1,

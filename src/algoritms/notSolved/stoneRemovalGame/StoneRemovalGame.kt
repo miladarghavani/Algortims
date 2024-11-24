@@ -5,6 +5,8 @@ class Solution {
 }
 
 fun main() {
+    PerformanceTester.measureExecution(1000 , { Solution().stoneGame(5)})
+
     val tests = listOf(
         5 to true,
         6 to false,

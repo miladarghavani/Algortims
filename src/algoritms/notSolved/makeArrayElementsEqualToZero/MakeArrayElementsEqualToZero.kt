@@ -11,6 +11,9 @@ class Solution {
 }
 
 fun main() {
+
+    PerformanceTester.measureExecution(1000 , { Solution().canBeZero(intArrayOf(4, 7, 6))})
+
     val tests = listOf(
         intArrayOf(4, 7, 6) to true,
         intArrayOf(1, 2, 3) to false,
