@@ -49,7 +49,7 @@ class SolutionJatlin{
     }
 }
 
-class SolutionMilad {
+class Solution {
     fun isHappy(n: Int): Boolean {
         return happilyEverAfter(n , mutableListOf())
     }
@@ -81,7 +81,7 @@ fun main() {
     )
 
     for ((input, expected) in tests) {
-        val result = SolutionMohamad().isHappy(input)
+        val result = Solution().isHappy(input)
         println("Input: n = $input => Output: $result (Expected: $expected)")
     }
 }

@@ -1,9 +1,7 @@
 package com.example.algoritms.easy.clearDigits/*3174. CLEAR DIGITS*/
 
 
-fun removeDigits(s: String): String {
-    return ""
-}
+
 fun removeDigitsParham(s: String): String {
     return buildString {
         s.forEach {c ->
@@ -43,7 +41,7 @@ fun main() {
 
 
 
-fun removeDigits1(s: String): String {
+fun removeDigits(s: String): String {
     val char = s.toMutableList()
     var i = 0
     while (true) {
