@@ -1,4 +1,7 @@
-package com.example.algoritms.easy.clearDigits/*3174. CLEAR DIGITS*/
+package com.example.algoritms.easy.clearDigits
+
+
+/*3174. CLEAR DIGITS*/
 
 
 
@@ -13,6 +16,7 @@ fun removeDigitsParham(s: String): String {
     }
 }
 fun main() {
+    PerformanceTester.measureExecution(1000 , {removeDigitsParham("s")})
     // Test cases
     val test1 = "abc"
     val result1 = removeDigits(test1)

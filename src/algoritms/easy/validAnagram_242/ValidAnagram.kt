@@ -57,4 +57,6 @@ fun main() {
         val result = Solution2().isAnagram(s, t)
         println("Input: s = \"$s\", t = \"$t\" => Output: $result (Expected: $expected)")
     }
+
+    PerformanceTester.measureExecution(1000 , {Solution2().isAnagram("s", "t")})
 }
