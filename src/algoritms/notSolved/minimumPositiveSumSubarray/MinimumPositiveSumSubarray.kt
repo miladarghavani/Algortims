@@ -1,19 +1,20 @@
 package algoritms.notSolved.minimumPositiveSumSubarray
 
 class Solution {
-    fun minPositiveSum(nums: IntArray): Int {
-        var currentSum = 0
+    fun minSubarraySumInRange(nums: IntArray, l: Int, r: Int): Int {
         var minPositiveSum = Int.MAX_VALUE
         var foundPositiveSum = false
 
-        for (num in nums) {
-            currentSum += num
-            if (currentSum > 0) {
-                foundPositiveSum = true
-                minPositiveSum = minOf(minPositiveSum, currentSum)
-            }
-            if (currentSum <= 0) {
-                currentSum = 0
+        for (start in nums.indices) {
+            var currentSum = 0
+            for (end in start until nums.size) {
+                currentSum += nums[end]
+                val length = end - start + 1
+                if (length in l..r && currentSum > 0) {
+                    foundPositiveSum = true
+                    minPositiveSum = minOf(minPositiveSum, currentSum)
+                }
+                if (length > r) break
             }
         }
 
@@ -22,18 +23,24 @@ class Solution {
 }
 
 fun main() {
-    PerformanceTester.measureExecution(1000 , { Solution().minPositiveSum(intArrayOf(-1, 2, 3, -4, 5))})
+    // Performance testing
+    PerformanceTester.measureExecution(1000) {
+        Solution().minSubarraySumInRange(intArrayOf(3, -2, 1, 4), 2, 3)
+    }
 
+    // Test cases
     val tests = listOf(
-        intArrayOf(-1, 2, 3, -4, 5) to 6,
-        intArrayOf(-1, -2, -3) to -1,
-        intArrayOf(1, 1, 1, 1) to 1,
-        intArrayOf(-5, 5, 10, -2) to 5,
-        intArrayOf(-1, -2, 0, 3, -4) to 3
+        Triple(intArrayOf(3, -2, 1, 4), 2, 3) to 1,
+        Triple(intArrayOf(-2, 2, -3, 1), 2, 3) to -1,
+        Triple(intArrayOf(1, 2, 3, 4), 2, 4) to 3,
+        Triple(intArrayOf(-5, 10, -5, 5), 2, 3) to 10,
+        Triple(intArrayOf(-1, 1, 2, -2, 3), 1, 3) to 1
     )
 
     for ((input, expected) in tests) {
-        val result = Solution().minPositiveSum(input)
-        println("Input: nums = ${input.joinToString()} => Output: $result (Expected: $expected)")
+        val (nums, l, r) = input
+        val result = Solution().minSubarraySumInRange(nums, l, r)
+        println("Input: nums = ${nums.joinToString()}, l = $l, r = $r => Output: $result (Expected: $expected)")
     }
 }
+

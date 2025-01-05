@@ -1,69 +1,59 @@
 # Problem: [Minimum Positive Sum Subarray](https://leetcode.com/problems/minimum-positive-sum-subarray/description/) (LeetCode Problem #3364)
 
-## Problem Description
-Given an integer array `nums`, your task is to find the minimum positive sum of any contiguous subarray of `nums`.
+# Problem Statement
 
-A **subarray** is a contiguous part of an array. For example, `[1, 2, 3]` is a subarray of the array `[1, 2, 3, 4]`.
+You are given an integer array `nums` and two integers `l` and `r`. Your task is to find the minimum sum of a subarray whose size is between `l` and `r` (inclusive) and whose sum is greater than 0.
 
-### Constraints:
-- The length of the array will be at most `1000`.
-- The array elements can range between `[-10^4, 10^4]`.
-- The array will not be empty and will always have at least one element.
+Return the minimum sum of such a subarray. If no such subarray exists, return `-1`.
 
-### Example 1:
+A subarray is a contiguous non-empty sequence of elements within an array.
+
+---
+
+## Examples
+
+### Example 1
 **Input:**  
-`nums = [-1, 2, 3, -4, 5]`
-
-**Output:**  
-`6`
-
-**Explanation:**  
-The minimum positive sum subarray is `[2, 3, -4, 5]`, which gives the sum of `6`.
-
-### Example 2:
-**Input:**  
-`nums = [-1, -2, -3]`
-
-**Output:**  
-`-1`
-
-**Explanation:**  
-There is no positive sum subarray, so the result is `-1`.
-
-### Example 3:
-**Input:**  
-`nums = [1, 1, 1, 1]`
-
+`nums = [3, -2, 1, 4], l = 2, r = 3`  
 **Output:**  
 `1`
 
 **Explanation:**  
-The minimum positive sum subarray is `[1]`, which gives the sum of `1`.
+The subarrays of length between `l = 2` and `r = 3` where the sum is greater than 0 are:
+- `[3, -2]` with a sum of `1`
+- `[1, 4]` with a sum of `5`
+- `[3, -2, 1]` with a sum of `2`
+- `[-2, 1, 4]` with a sum of `3`
 
-### Example 4:
+Out of these, the subarray `[3, -2]` has a sum of `1`, which is the smallest positive sum. Hence, the answer is `1`.
+
+---
+
+### Example 2
 **Input:**  
-`nums = [-5, 5, 10, -2]`
-
+`nums = [-2, 2, -3, 1], l = 2, r = 3`  
 **Output:**  
-`5`
+`-1`
 
 **Explanation:**  
-The minimum positive sum subarray is `[5]`, which gives the sum of `5`.
+There is no subarray of length between `l` and `r` that has a sum greater than 0. So, the answer is `-1`.
 
-### Example 5:
+---
+
+### Example 3
 **Input:**  
-`nums = [-1, -2, 0, 3, -4]`
-
+`nums = [1, 2, 3, 4], l = 2, r = 4`  
 **Output:**  
 `3`
 
 **Explanation:**  
-The minimum positive sum subarray is `[3]`, which gives the sum of `3`.
+The subarray `[1, 2]` has a length of `2` and the minimum sum greater than 0. So, the answer is `3`.
 
-## LeetCode Description
-A subarray is a contiguous part of an array. The challenge is to find the minimum positive sum that can be obtained from any contiguous subarray in the given array.
+---
 
-### Hint:
-- **Iterate through the array** and keep track of the sum of elements in a subarray.
-- **Reset the sum** when it becomes negative, as we are only interested in positive sums.
-- Your task is to find the **smallest positive sum**. If no positive sum exists, return `-1`.
+## Constraints
+
+- `1 <= nums.length <= 100`
+- `1 <= l <= r <= nums.length`
+- `-1000 <= nums[i] <= 1000`
+
