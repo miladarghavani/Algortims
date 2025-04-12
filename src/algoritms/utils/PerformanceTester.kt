@@ -12,43 +12,40 @@ class PerformanceTester {
         fun measureExecution(times: Int, function: () -> Unit) {
             val runtime = Runtime.getRuntime()
 
-            runtime.gc() // Force garbage collection before measurement
+            runtime.gc() // Force GC before measuring
 
             val memoryBefore = runtime.totalMemory() - runtime.freeMemory()
             var peakMemoryUsage = memoryBefore
 
             val totalTime = kotlin.system.measureNanoTime {
                 repeat(times) {
-                    val currentMemory = runtime.totalMemory() - runtime.freeMemory()
-                    if (currentMemory > peakMemoryUsage) {
-                        peakMemoryUsage = currentMemory
-                    }
                     function()
+                    val currentMemory = runtime.totalMemory() - runtime.freeMemory()
+                    peakMemoryUsage = maxOf(peakMemoryUsage, currentMemory)
                 }
             }
 
-            runtime.gc() // Force GC again after execution to clear out unused memory
+            runtime.gc() // Clean up unused memory
             val memoryAfter = runtime.totalMemory() - runtime.freeMemory()
 
-            val memoryUsed = (memoryAfter - memoryBefore) / 1024 // KB
-            val timeInMillis = totalTime / 1_000_000.0 // Convert nanoseconds to milliseconds
-            val averageTimePerExecution = timeInMillis / times
-            val averageMemoryPerExecution = memoryUsed / times
-            val peakMemoryKB = (peakMemoryUsage - memoryBefore) / 1024
+            val rawMemoryUsed = memoryAfter - memoryBefore
+            val memoryUsedKB = maxOf(0, rawMemoryUsed / 1024) // prevent negative
+            val peakMemoryKB = maxOf(0, (peakMemoryUsage - memoryBefore) / 1024)
+            val timeInMillis = totalTime / 1_000_000.0
+            val averageTime = timeInMillis / times
+            val averageMemoryPerExecution = memoryUsedKB / times
 
             val report = PerformanceReport(
                 totalTimeMs = timeInMillis,
-                averageTimePerExecutionMs = averageTimePerExecution,
-                memoryUsedKB = memoryUsed,
+                averageTimePerExecutionMs = averageTime,
+                memoryUsedKB = memoryUsedKB,
                 averageMemoryPerExecutionKB = averageMemoryPerExecution,
                 peakMemoryKB = peakMemoryKB
             )
 
-            // Call printReport directly at the end
             printReport(report)
         }
 
-        // Method to print the report
         private fun printReport(report: PerformanceReport) {
             println("-------------------------------------------------------------------------")
             println("Performance Report:")
@@ -58,7 +55,6 @@ class PerformanceTester {
             println("Average Memory per Execution: ${report.averageMemoryPerExecutionKB} KB")
             println("Peak Memory Usage: ${report.peakMemoryKB} KB")
             println("-------------------------------------------------------------------------")
-
         }
     }
 }
